@@ -1,0 +1,59 @@
+abstract class Routes {
+  static const homeRoute = Paths.homePath;
+  static const homeScreenRoute = Paths.homeScreenPath;
+  static const introScreenRoute = Paths.introScreenPath;
+  static const loginScreenRoute = Paths.loginScreenPath;
+  static const forgotScreenRoute = Paths.forgotScreenPath;
+  static const selectCountryRoute = Paths.selectCountryPath;
+  static const resetPasswordRoute = Paths.resetPasswordPath;
+  static const signUpScreenRoute = Paths.signUpScreenPath;
+  static const phoneNumberScreenRoute = Paths.phoneNumberScreenPath;
+  static const verificationRoute = Paths.verificationPath;
+  static const termConditionRoute = Paths.termConditionPath;
+  static const trendingListRoute = Paths.trendingListPath;
+  static const recentCourseListRoute = Paths.recentCourseListPath;
+  static const searchScreenRoute = Paths.searchScreenPath;
+  static const courseDetailRoute = Paths.courseDetailPath;
+  static const choosePlanRoute = Paths.choosePlanPath;
+  static const paymentRoute = Paths.paymentPath;
+  static const myCourseDetailRoute = Paths.myCourseDetailPath;
+  static const videoScreenRoute = Paths.videoScreenPath;
+  static const chatScreenRoute = Paths.chatScreenPath;
+  static const editProfileRoute = Paths.editProfilePath;
+  static const certificationRoute = Paths.certificationPath;
+  static const cardScreenRoute = Paths.cardScreenPath;
+  static const privacyPolicyRoute = Paths.privacyPolicyPath;
+  static const feedbackRoute = Paths.feedbackPath;
+  static const helpCenterRoute = Paths.helpCenterPath;
+  static const savedCourseRoute = Paths.savedCoursePath;
+}
+
+abstract class Paths {
+  static const homePath = "/";
+  static const homeScreenPath = "/HomeScreen";
+  static const introScreenPath = "/IntroScreen";
+  static const loginScreenPath = "/LoginScreen";
+  static const forgotScreenPath = "/ForgotScreen";
+  static const selectCountryPath = "/SelectCountryScreen";
+  static const resetPasswordPath = "/ResetPasswordScreen";
+  static const signUpScreenPath = "/SignUpScreen";
+  static const phoneNumberScreenPath = "/PhoneNumberScreen";
+  static const verificationPath = "/VerificationScreen";
+  static const termConditionPath = "/TermConditionScreen";
+  static const trendingListPath = "/TrendingList";
+  static const recentCourseListPath = "/RecentCourseList";
+  static const searchScreenPath = "/SearchScreen";
+  static const courseDetailPath = "/CourseDetail";
+  static const choosePlanPath = "/ChoosePlan";
+  static const paymentPath = "/PaymentScreen";
+  static const myCourseDetailPath = "/MyCourseDetail";
+  static const videoScreenPath = "/VideoScreen";
+  static const chatScreenPath = "/ChatScreen";
+  static const editProfilePath = "/EditProfile";
+  static const certificationPath = "/CertificationScreen";
+  static const cardScreenPath = "/CardScreen";
+  static const privacyPolicyPath = '/PrivacyPolicyScreen';
+  static const feedbackPath = "/FeedbackScreen";
+  static const helpCenterPath = "/HelpCenterScreen";
+  static const savedCoursePath = "/SavedCourseScreen";
+}
