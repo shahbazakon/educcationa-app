@@ -8,7 +8,7 @@ import 'package:pinput/pinput.dart';
 import '../../Constants/color_data.dart';
 import '../../Constants/constant.dart';
 import '../../Constants/widget_utils.dart';
-import '../../dialog/success_verification_dialog.dart';
+import '../../routes/app_routes.dart';
 
 class VerificationScreen extends StatefulWidget {
   const VerificationScreen({Key? key}) : super(key: key);
@@ -111,11 +111,12 @@ class _VerificationScreenState extends State<VerificationScreen> {
                         ),
                         getVerSpace(30.h),
                         getButton(context, accentColor, "Confirm", Colors.white, () {
-                          showDialog(
-                              builder: (context) {
-                                return const SuccessVerificationDialog();
-                              },
-                              context: context);
+                          Constant.sendToNext(context, Routes.homeScreenRoute);
+                          // showDialog(
+                          //     builder: (context) {
+                          //       return const SuccessVerificationDialog();
+                          //     },
+                          //     context: context);
                         }, 18.sp,
                             buttonHeight: 56.h,
                             borderRadius: BorderRadius.circular(22.h),

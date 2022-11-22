@@ -1,6 +1,6 @@
-import 'package:education_app/view/course_detail/tab_lessons.dart';
+import 'package:education_app/view/course_detail/tab_Classes.dart';
+import 'package:education_app/view/course_detail/tab_live_classes.dart';
 import 'package:education_app/view/course_detail/tab_overview.dart';
-import 'package:education_app/view/course_detail/tab_reviews.dart';
 import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -100,7 +100,11 @@ class _CourseDetailState extends State<CourseDetail> with TickerProviderStateMix
           _tabController.animateTo(value,
               duration: const Duration(milliseconds: 300), curve: Curves.ease);
         },
-        children: const [TabOverView(), TabLessons(), TabReviews()],
+        children: const [
+          TabOverView(),
+          TabLiveClasses(),
+          TabClasses(),
+        ],
       ),
     );
   }
@@ -132,10 +136,10 @@ class _CourseDetailState extends State<CourseDetail> with TickerProviderStateMix
             text: "Overview",
           ),
           Tab(
-            text: "Lessons",
+            text: "Live Classes",
           ),
           Tab(
-            text: "Reviews",
+            text: "Classes",
           ),
         ],
         onTap: (value) {

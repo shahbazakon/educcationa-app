@@ -52,10 +52,6 @@ class _TabProfileState extends State<TabProfile> {
                   ],
                 ),
                 getVerSpace(20.h),
-                getProfileWidget("My Certifications", () {
-                  Constant.sendToNext(context, Routes.certificationRoute);
-                }, "award.svg"),
-                getVerSpace(20.h),
                 getProfileWidget("My Projects", () {}, "book.svg"),
                 getVerSpace(20.h),
                 getProfileWidget("Saved Course", () {

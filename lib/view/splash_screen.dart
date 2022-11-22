@@ -33,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
     } else if (!isSignIn) {
       Constant.sendToNext(context, Routes.loginScreenRoute);
     } else {
-      Timer(const Duration(seconds: 3), () {
+      Timer(const Duration(seconds: 4), () {
         Constant.sendToNext(context, Routes.homeScreenRoute);
       });
     }
@@ -50,9 +50,7 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            getAssetImage("splash_logo.png", width: 95.h, height: 95.h),
-            getVerSpace(20.h),
-            getAssetImage("splash_text.png", width: 255.h, height: 34.h)
+            Image.asset("assets/iqra_images/iqra_logo.jpg", height: 200.h),
           ],
         ),
       ),

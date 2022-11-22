@@ -53,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Scaffold(
               backgroundColor: Colors.white,
               resizeToAvoidBottomInset: false,
-              bottomNavigationBar: buildBottomnavigation(controller),
+              bottomNavigationBar: buildBottomNavigation(controller),
               body: SafeArea(
                 child: GetX<HomeController>(
                   init: HomeController(),
@@ -80,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Container buildBottomnavigation(HomeController controller) {
+  Container buildBottomNavigation(HomeController controller) {
     return Container(
       height: 70.h,
       width: double.infinity,

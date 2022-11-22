@@ -59,7 +59,7 @@ class _OngoingScreenState extends State<OngoingScreen> {
                     Row(
                       children: [
                         LinearPercentIndicator(
-                          width: 202.w,
+                          width: 150.w,
                           padding: EdgeInsets.zero,
                           backgroundColor: darkgrey,
                           progressColor: accentColor,

@@ -15,13 +15,7 @@ class TabOverView extends StatefulWidget {
 
 class _TabOverViewState extends State<TabOverView> {
   List<ModelDetailCategory> detailCategoryLists = DataFile.detailCategoryList;
-  List<String> category = [
-    "Creative",
-    "Visual Communication",
-    "Design",
-    "Color Theory",
-    "Typography"
-  ];
+  List<String> category = ["History", "Chemistry", "Physics", "Geology", "Mathematica"];
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +23,7 @@ class _TabOverViewState extends State<TabOverView> {
       children: [
         getPaddingWidget(
           EdgeInsets.symmetric(horizontal: 20.h),
-          getCustomFont("UI UX Design", 18.sp, Colors.black, 1,
+          getCustomFont("UI UX Design Replace with Foundation Batch 2023", 18.sp, Colors.black, 1,
               fontWeight: FontWeight.w500, txtHeight: 1.66.h),
         ),
         getVerSpace(4.h),
@@ -74,94 +68,10 @@ class _TabOverViewState extends State<TabOverView> {
                 mainAxisExtent: 83.h,
                 mainAxisSpacing: 20.h,
                 crossAxisSpacing: 12.h)),
-        getVerSpace(21.h),
-        getPaddingWidget(
-          EdgeInsets.symmetric(horizontal: 20.h),
-          getCustomFont('Instructor', 18.sp, Colors.black, 1,
-              fontWeight: FontWeight.w700, txtHeight: 1.5.h),
-        ),
-        getVerSpace(12.h),
-        Container(
-          margin: EdgeInsets.symmetric(horizontal: 20.h),
-          decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(22.h),
-              boxShadow: [
-                BoxShadow(
-                    color: "#2423408F".toColor(), blurRadius: 16.h, offset: const Offset(-4, 5))
-              ]),
-          padding: EdgeInsets.all(12.h),
-          child: Row(
-            children: [
-              Expanded(
-                flex: 1,
-                child: Row(
-                  children: [
-                    getAssetImage("instruct1.png", height: 71.h, width: 71.h),
-                    getHorSpace(12.h),
-                    Expanded(
-                      flex: 1,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          getCustomFont("Leslie Alexander", 14.sp, Colors.black, 1,
-                              fontWeight: FontWeight.w700, txtHeight: 1.5.h),
-                          getVerSpace(6.h),
-                          getCustomFont("Faculty, Program In UI UX Design ", 14.sp, Colors.black, 1,
-                              fontWeight: FontWeight.w500, txtHeight: 1.5.h)
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              getSvgImage("arrow_right.svg", width: 24.h, height: 24.h)
-            ],
-          ),
-        ),
-        getVerSpace(20.h),
-        Container(
-          margin: EdgeInsets.symmetric(horizontal: 20.h),
-          decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(22.h),
-              boxShadow: [
-                BoxShadow(
-                    color: "#2423408F".toColor(), blurRadius: 16.h, offset: const Offset(-4, 5))
-              ]),
-          padding: EdgeInsets.all(12.h),
-          child: Row(
-            children: [
-              Expanded(
-                flex: 1,
-                child: Row(
-                  children: [
-                    getAssetImage("instruct2.png", height: 71.h, width: 71.h),
-                    getHorSpace(12.h),
-                    Expanded(
-                      flex: 1,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          getCustomFont("Jacob Jones", 14.sp, Colors.black, 1,
-                              fontWeight: FontWeight.w700, txtHeight: 1.5.h),
-                          getVerSpace(6.h),
-                          getCustomFont("Faculty, Program In UI UX Design ", 14.sp, Colors.black, 1,
-                              fontWeight: FontWeight.w500, txtHeight: 1.5.h)
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              getSvgImage("arrow_right.svg", width: 24.h, height: 24.h)
-            ],
-          ),
-        ),
         getVerSpace(20.h),
         getPaddingWidget(
           EdgeInsets.symmetric(horizontal: 20.h),
-          getCustomFont("Skill", 18.sp, Colors.black, 1,
+          getCustomFont("Subjects", 18.sp, Colors.black, 1,
               fontWeight: FontWeight.w700, txtHeight: 1.5.h),
         ),
         getVerSpace(12.h),

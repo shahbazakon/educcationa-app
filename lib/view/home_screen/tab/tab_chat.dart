@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:learn_management_app_ui/app/controller/controller.dart';
-import 'package:learn_management_app_ui/app/data/data_file.dart';
-import 'package:learn_management_app_ui/app/routes/app_routes.dart';
-import 'package:learn_management_app_ui/base/color_data.dart';
-import 'package:learn_management_app_ui/base/constant.dart';
-import 'package:learn_management_app_ui/base/widget_utils.dart';
 
+import '../../../Constants/color_data.dart';
+import '../../../Constants/constant.dart';
+import '../../../Constants/widget_utils.dart';
+import '../../../controller/controller.dart';
+import '../../../data/data_file.dart';
 import '../../../model/model_chat.dart';
+import '../../../routes/app_routes.dart';
 
 class TabChat extends StatefulWidget {
   const TabChat({Key? key}) : super(key: key);
@@ -41,14 +41,13 @@ class _TabChatState extends State<TabChat> {
                 return Row(
                   children: [
                     GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         Constant.sendToNext(context, Routes.chatScreenRoute);
                       },
                       child: Stack(
                         alignment: Alignment.bottomRight,
                         children: [
-                          getAssetImage(modelChat.image ?? '',
-                              height: 50.h, width: 50.h),
+                          getAssetImage(modelChat.image ?? '', height: 50.h, width: 50.h),
                           Positioned(
                             right: 2.h,
                             bottom: 3.h,
@@ -56,8 +55,7 @@ class _TabChatState extends State<TabChat> {
                               height: 10.h,
                               width: 10.h,
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20.h),
-                                  color: greenColor),
+                                  borderRadius: BorderRadius.circular(20.h), color: greenColor),
                             ),
                           )
                         ],
@@ -81,7 +79,7 @@ class _TabChatState extends State<TabChat> {
                   itemBuilder: (context, index) {
                     ModelChat modelChat = controller.chatLists[index];
                     return GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         Constant.sendToNext(context, Routes.chatScreenRoute);
                       },
                       child: Container(
@@ -105,8 +103,7 @@ class _TabChatState extends State<TabChat> {
                                 Stack(
                                   alignment: Alignment.bottomRight,
                                   children: [
-                                    getAssetImage(modelChat.image ?? '',
-                                        height: 50.h, width: 50.h),
+                                    getAssetImage(modelChat.image ?? '', height: 50.h, width: 50.h),
                                     Positioned(
                                       right: 2.h,
                                       bottom: 3.h,
@@ -114,8 +111,7 @@ class _TabChatState extends State<TabChat> {
                                         height: 10.h,
                                         width: 10.h,
                                         decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(20.h),
+                                            borderRadius: BorderRadius.circular(20.h),
                                             color: greenColor),
                                       ),
                                     )
@@ -126,25 +122,19 @@ class _TabChatState extends State<TabChat> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    getCustomFont(modelChat.name ?? "", 14.sp,
-                                        Colors.black, 1,
-                                        fontWeight: FontWeight.w700,
-                                        txtHeight: 1.5.h),
+                                    getCustomFont(modelChat.name ?? "", 14.sp, Colors.black, 1,
+                                        fontWeight: FontWeight.w700, txtHeight: 1.5.h),
                                     getVerSpace(2.h),
-                                    getCustomFont(modelChat.chat ?? "", 12.sp,
-                                        subtextColor, 1,
-                                        fontWeight: FontWeight.w500,
-                                        txtHeight: 1.5.h)
+                                    getCustomFont(modelChat.chat ?? "", 12.sp, subtextColor, 1,
+                                        fontWeight: FontWeight.w500, txtHeight: 1.5.h)
                                   ],
                                 )
                               ],
                             ),
                             Column(
                               children: [
-                                getCustomFont(
-                                    modelChat.time ?? "", 12.sp, Colors.black, 1,
-                                    fontWeight: FontWeight.w500,
-                                    txtHeight: 1.5.h),
+                                getCustomFont(modelChat.time ?? "", 12.sp, Colors.black, 1,
+                                    fontWeight: FontWeight.w500, txtHeight: 1.5.h),
                                 getVerSpace(4.h),
                                 modelChat.notification == "0"
                                     ? Container()
@@ -153,14 +143,10 @@ class _TabChatState extends State<TabChat> {
                                         width: 16.h,
                                         decoration: BoxDecoration(
                                             color: accentColor,
-                                            borderRadius:
-                                                BorderRadius.circular(20.h)),
+                                            borderRadius: BorderRadius.circular(20.h)),
                                         alignment: Alignment.center,
                                         child: getCustomFont(
-                                            modelChat.notification ?? "",
-                                            9.sp,
-                                            Colors.white,
-                                            1,
+                                            modelChat.notification ?? "", 9.sp, Colors.white, 1,
                                             fontWeight: FontWeight.w500),
                                       )
                               ],

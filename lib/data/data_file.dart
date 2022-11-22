@@ -102,7 +102,6 @@ class DataFile {
     ModelDetailCategory("detail_cat2.svg", "Beginner"),
     ModelDetailCategory("detail_cat3.svg", "6 Weeks"),
     ModelDetailCategory("detail_cat4.svg", "English"),
-    ModelDetailCategory("detail_cat5.svg", "Certificate"),
     ModelDetailCategory("detail_cat6.svg", "Fully Secure")
   ];
 

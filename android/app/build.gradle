@@ -33,8 +33,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    d
-    ependencies {
+    dependencies {
         implementation 'com.android.support:multidex:2.0.1' //enter the latest multidex version
     }
     defaultConfig {

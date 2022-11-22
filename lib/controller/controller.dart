@@ -38,31 +38,28 @@ class IntroController extends GetxController {
 }
 
 class LoginController extends GetxController {
-  var emailController;
-  var passwordController;
+  var phoneController;
 
   @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    emailController = TextEditingController();
-    passwordController = TextEditingController();
+    phoneController = TextEditingController();
   }
 
   @override
   void onClose() {
     // TODO: implement onClose
     super.onClose();
-    emailController.disclose;
-    passwordController.disclose;
+    phoneController.disclose;
   }
 }
 
 class ForgotController extends GetxController {
   var phoneController;
   var searchController;
-  RxString image = "flag.png".obs;
-  RxString code = "+1".obs;
+  RxString image = "image_austia.png".obs;
+  RxString code = "+91".obs;
   RxBool check = false.obs;
   List<ModelCountry> newCountryLists = DataFile.countryList;
 

@@ -58,7 +58,7 @@ class _CompletedScreenState extends State<CompletedScreen> {
                     Row(
                       children: [
                         LinearPercentIndicator(
-                          width: 202.w,
+                          width: 150.w,
                           padding: EdgeInsets.zero,
                           backgroundColor: darkgrey,
                           progressColor: accentColor,
