@@ -5,7 +5,6 @@ import '../../../Constants/color_data.dart';
 import '../../../Constants/constant.dart';
 import '../../../Constants/widget_utils.dart';
 import '../../../dialog/logout_dialog.dart';
-import '../../../dialog/rate_us_dialog.dart';
 import '../../../routes/app_routes.dart';
 
 class TabProfile extends StatefulWidget {
@@ -35,7 +34,7 @@ class _TabProfileState extends State<TabProfile> {
               children: [
                 getAssetImage("profile_image.png", width: 100.h, height: 100.h),
                 getVerSpace(12.h),
-                getCustomFont("Leslie Alexander", 18.sp, Colors.black, 1,
+                getCustomFont("Prakhar Kulshrestha ", 18.sp, Colors.black, 1,
                     fontWeight: FontWeight.w500, txtHeight: 1.66, textAlign: TextAlign.center),
                 getVerSpace(2.h),
                 Row(
@@ -58,10 +57,6 @@ class _TabProfileState extends State<TabProfile> {
                   Constant.sendToNext(context, Routes.savedCourseRoute);
                 }, "frame.svg"),
                 getVerSpace(20.h),
-                getProfileWidget("My Card", () {
-                  Constant.sendToNext(context, Routes.cardScreenRoute);
-                }, "card.svg"),
-                getVerSpace(20.h),
                 getProfileWidget("Help Center", () {
                   Constant.sendToNext(context, Routes.helpCenterRoute);
                 }, "info-circle.svg"),
@@ -74,13 +69,13 @@ class _TabProfileState extends State<TabProfile> {
                   Constant.sendToNext(context, Routes.feedbackRoute);
                 }, "like.svg"),
                 getVerSpace(20.h),
-                getProfileWidget("Rate Us", () {
-                  showDialog(
-                      builder: (context) {
-                        return const RateUsDialog();
-                      },
-                      context: context);
-                }, "heart.svg"),
+                // getProfileWidget("Rate Us", () {
+                //   showDialog(
+                //       builder: (context) {
+                //         return const RateUsDialog();
+                //       },
+                //       context: context);
+                // }, "heart.svg"),
                 getVerSpace(30.h),
                 getPaddingWidget(
                   EdgeInsets.symmetric(horizontal: 20.h),

@@ -81,69 +81,70 @@ class _TabHomeState extends State<TabHome> {
         getVerSpace(16.h),
         GetBuilder<HomeScreenController>(
           init: HomeScreenController(),
-          builder: (controller) => GridView.builder(
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 200,
-                childAspectRatio: .9,
-                crossAxisSpacing: 2,
-                mainAxisSpacing: 10),
-            primary: false,
-            shrinkWrap: true,
-            itemCount: controller.trendingLists.length,
-            scrollDirection: Axis.vertical,
-            itemBuilder: (context, index) {
-              ModelTrending modelTrending = controller.trendingLists[index];
-              return GestureDetector(
-                onTap: () {
-                  Constant.sendToNext(context, Routes.courseDetailRoute);
-                },
-                child: Container(
-                  width: 177.h,
-                  margin: EdgeInsets.only(right: 16.h, left: index == 0 ? 20.h : 0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: 172.h,
-                        width: 177.h,
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: AssetImage(
-                                    Constant.assetImagePath + modelTrending.image.toString()),
-                                fit: BoxFit.fill),
-                            borderRadius: BorderRadius.circular(12.h)),
-                        padding:
-                            EdgeInsets.only(left: 10.h, top: 10.h, right: 147.h, bottom: 142.h),
-                        child: GestureDetector(
-                          onTap: () {
-                            controller.selectChange(index);
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(20.h),
-                                boxShadow: [
-                                  BoxShadow(
-                                      color: '#2423408F'.toColor(),
-                                      offset: const Offset(-4, 5),
-                                      blurRadius: 16.h)
-                                ]),
-                            padding: const EdgeInsets.all(3),
-                            child: getSvgImage(controller.trendingLists[index].select == true
-                                ? "save_bold.svg"
-                                : "save.svg"),
+          builder: (controller) => Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: GridView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                  maxCrossAxisExtent: 200,
+                  childAspectRatio: .82,
+                  crossAxisSpacing: 5,
+                  mainAxisSpacing: 5),
+              primary: false,
+              shrinkWrap: true,
+              itemCount: controller.trendingLists.length,
+              scrollDirection: Axis.vertical,
+              itemBuilder: (context, index) {
+                ModelTrending modelTrending = controller.trendingLists[index];
+                return GestureDetector(
+                  onTap: () {
+                    Constant.sendToNext(context, Routes.courseDetailRoute);
+                  },
+                  child: Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: 172.h,
+                          width: 177.h,
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage(
+                                      Constant.assetImagePath + modelTrending.image.toString()),
+                                  fit: BoxFit.fill),
+                              borderRadius: BorderRadius.circular(12.h)),
+                          padding:
+                              EdgeInsets.only(left: 10.h, top: 10.h, right: 147.h, bottom: 142.h),
+                          child: GestureDetector(
+                            onTap: () {
+                              controller.selectChange(index);
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(20.h),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: '#2423408F'.toColor(),
+                                        offset: const Offset(-4, 5),
+                                        blurRadius: 16.h)
+                                  ]),
+                              padding: const EdgeInsets.all(3),
+                              child: getSvgImage(controller.trendingLists[index].select == true
+                                  ? "save_bold.svg"
+                                  : "save.svg"),
+                            ),
                           ),
                         ),
-                      ),
-                      getVerSpace(8.h),
-                      getMultilineCustomFont(modelTrending.name ?? '', 15.sp, Colors.black,
-                          fontWeight: FontWeight.w700, txtHeight: 1.53.h)
-                    ],
+                        getVerSpace(8.h),
+                        getMultilineCustomFont(modelTrending.name ?? '', 15.sp, Colors.black,
+                            fontWeight: FontWeight.w700, txtHeight: 1.53.h)
+                      ],
+                    ),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
         )
       ],

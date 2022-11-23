@@ -81,8 +81,9 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Container buildBottomNavigation(HomeController controller) {
+    List bottomLabelList = ["Home", "Courses", "Chat", "Profile"];
     return Container(
-      height: 70.h,
+      height: 75.h,
       width: double.infinity,
       decoration: BoxDecoration(
           color: Colors.white,
@@ -113,14 +114,19 @@ class _HomeScreenState extends State<HomeScreen> {
                           : modelBottom.unselect ?? "",
                       height: 24.h,
                       width: 24.h),
-                  getVerSpace(9.h),
-                  controller.index.value == index
-                      ? Container(
-                          height: 1.75.h,
-                          width: 24.h,
-                          color: accentColor,
-                        )
-                      : const SizedBox()
+                  // getVerSpace(9.h),
+                  // controller.index.value == index
+                  //     ? Container(
+                  //         height: 1.75.h,
+                  //         width: 24.h,
+                  //         color: accentColor,
+                  //       )
+                  //     : const SizedBox(),
+                  getVerSpace(5.h),
+                  Text(
+                    bottomLabelList[index],
+                    style: TextStyle(fontFamily: Constant.fontsFamily, fontSize: 10),
+                  ),
                 ],
               ),
             ),
