@@ -5,6 +5,7 @@ import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:video_player/video_player.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../Constants/color_data.dart';
 import '../../Constants/constant.dart';
@@ -27,6 +28,15 @@ class _CourseDetailState extends State<CourseDetail> with TickerProviderStateMix
   late PageController _pController;
 
   late FlickManager flickManager;
+
+  final YoutubePlayerController _controller = YoutubePlayerController(
+    initialVideoId: '-tysrApRtLU',
+    flags: const YoutubePlayerFlags(
+      autoPlay: true,
+      mute: false,
+      showLiveFullscreenButton: false,
+    ),
+  );
 
   @override
   void dispose() {
@@ -162,10 +172,25 @@ class _CourseDetailState extends State<CourseDetail> with TickerProviderStateMix
       padding: EdgeInsets.all(12.h),
       child: Container(
         height: 195.h,
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(22.h)),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.h)),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(22.h),
-          child: FlickVideoPlayer(
+          borderRadius: BorderRadius.circular(15.h),
+          child: YoutubePlayer(
+            controller: _controller,
+            showVideoProgressIndicator: true,
+            progressIndicatorColor: Colors.blueAccent,
+            progressColors: const ProgressBarColors(
+              playedColor: Colors.amber,
+              handleColor: Colors.amberAccent,
+            ),
+            onReady: () {
+              // _controller.addListener(listener);
+            },
+            // onReady () {
+            // _controller.addListener(listener);
+            // },
+          ),
+          /*child: FlickVideoPlayer(
             flickManager: flickManager,
             flickVideoWithControls: const FlickVideoWithControls(
               closedCaptionTextStyle: TextStyle(fontSize: 8),
@@ -174,7 +199,7 @@ class _CourseDetailState extends State<CourseDetail> with TickerProviderStateMix
             flickVideoWithControlsFullscreen: const FlickVideoWithControls(
               controls: FlickLandscapeControls(),
             ),
-          ),
+          ),*/
         ),
       ),
     );
