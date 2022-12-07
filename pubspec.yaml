@@ -56,6 +56,9 @@ dev_dependencies:
   flick_video_player: ^0.5.0
   flutter_lints: ^2.0.0
   youtube_player_flutter: ^8.1.1
+  bot_toast: ^4.0.3
+  http: ^0.13.5
+  intl:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

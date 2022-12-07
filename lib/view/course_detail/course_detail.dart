@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:education_app/view/course_detail/tab_Classes.dart';
 import 'package:education_app/view/course_detail/tab_live_classes.dart';
 import 'package:education_app/view/course_detail/tab_overview.dart';
@@ -13,7 +15,23 @@ import '../../Constants/widget_utils.dart';
 import '../../routes/app_routes.dart';
 
 class CourseDetail extends StatefulWidget {
-  const CourseDetail({Key? key}) : super(key: key);
+  final String? courseDuration;
+  final String? heading;
+  final String? description;
+  final String? lessons;
+  final String? medium;
+  final String? level;
+  final List? subjectName;
+  const CourseDetail(
+      {Key? key,
+      this.courseDuration,
+      this.description,
+      this.heading,
+      this.lessons,
+      this.medium,
+      this.level,
+      this.subjectName})
+      : super(key: key);
 
   @override
   State<CourseDetail> createState() => _CourseDetailState();
@@ -29,10 +47,10 @@ class _CourseDetailState extends State<CourseDetail> with TickerProviderStateMix
 
   late FlickManager flickManager;
 
-  final YoutubePlayerController _controller = YoutubePlayerController(
+  final YoutubePlayerController videoController = YoutubePlayerController(
     initialVideoId: '-tysrApRtLU',
     flags: const YoutubePlayerFlags(
-      autoPlay: true,
+      autoPlay: false,
       mute: false,
       showLiveFullscreenButton: false,
     ),
@@ -49,7 +67,6 @@ class _CourseDetailState extends State<CourseDetail> with TickerProviderStateMix
   void initState() {
     _tabController = TabController(length: 3, vsync: this);
     _pController = PageController();
-
     flickManager = FlickManager(
         videoPlayerController: VideoPlayerController.network(
           "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4",
@@ -60,6 +77,11 @@ class _CourseDetailState extends State<CourseDetail> with TickerProviderStateMix
 
   @override
   Widget build(BuildContext context) {
+    log("heading: ${widget.heading}", name: "${context.widget}");
+    log("description: ${widget.description}", name: "${context.widget}");
+    log("subjectName: ${widget.subjectName}", name: "${context.widget}");
+    log("lessons: ${widget.lessons}", name: "${context.widget}");
+    log("courseDuration: ${widget.courseDuration}", name: "${context.widget}");
     return WillPopScope(
       onWillPop: () async {
         backClick();
@@ -110,9 +132,19 @@ class _CourseDetailState extends State<CourseDetail> with TickerProviderStateMix
           _tabController.animateTo(value,
               duration: const Duration(milliseconds: 300), curve: Curves.ease);
         },
-        children: const [
-          TabOverView(),
-          TabLiveClasses(),
+        children: [
+          TabOverView(
+            heading: widget.heading,
+            description: widget.description,
+            lessons: widget.lessons,
+            courseDuration: widget.courseDuration,
+            subjectName: widget.subjectName,
+            level: widget.level,
+            medium: widget.medium,
+          ),
+          TabLiveClasses(
+            videoController: videoController,
+          ),
           TabClasses(),
         ],
       ),
@@ -176,7 +208,7 @@ class _CourseDetailState extends State<CourseDetail> with TickerProviderStateMix
         child: ClipRRect(
           borderRadius: BorderRadius.circular(15.h),
           child: YoutubePlayer(
-            controller: _controller,
+            controller: videoController,
             showVideoProgressIndicator: true,
             progressIndicatorColor: Colors.blueAccent,
             progressColors: const ProgressBarColors(

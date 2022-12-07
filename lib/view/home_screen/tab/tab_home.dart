@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,6 +15,8 @@ import '../../../model/model_category.dart';
 import '../../../model/model_home_slider.dart';
 import '../../../model/model_trending.dart';
 import '../../../routes/app_routes.dart';
+import '../../../services/services.dart';
+import '../../course_detail/course_detail.dart';
 
 class TabHome extends StatefulWidget {
   const TabHome({Key? key}) : super(key: key);
@@ -25,6 +29,7 @@ class _TabHomeState extends State<TabHome> {
   HomeScreenController controller = Get.put(HomeScreenController());
   List<ModelHomeSlider> homeSliderLists = DataFile.homeSliderList;
   List<ModelCategory> categoryLists = DataFile.categoryList;
+  List<dynamic> addCourses = [];
 
   @override
   Widget build(BuildContext context) {
@@ -79,73 +84,96 @@ class _TabHomeState extends State<TabHome> {
           ),
         ),
         getVerSpace(16.h),
-        GetBuilder<HomeScreenController>(
-          init: HomeScreenController(),
-          builder: (controller) => Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: GridView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 200,
-                  childAspectRatio: .82,
-                  crossAxisSpacing: 5,
-                  mainAxisSpacing: 5),
-              primary: false,
-              shrinkWrap: true,
-              itemCount: controller.trendingLists.length,
-              scrollDirection: Axis.vertical,
-              itemBuilder: (context, index) {
-                ModelTrending modelTrending = controller.trendingLists[index];
-                return GestureDetector(
-                  onTap: () {
-                    Constant.sendToNext(context, Routes.courseDetailRoute);
-                  },
-                  child: Container(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          height: 172.h,
-                          width: 177.h,
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: AssetImage(
-                                      Constant.assetImagePath + modelTrending.image.toString()),
-                                  fit: BoxFit.fill),
-                              borderRadius: BorderRadius.circular(12.h)),
-                          padding:
-                              EdgeInsets.only(left: 10.h, top: 10.h, right: 147.h, bottom: 142.h),
-                          child: GestureDetector(
-                            onTap: () {
-                              controller.selectChange(index);
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(20.h),
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: '#2423408F'.toColor(),
-                                        offset: const Offset(-4, 5),
-                                        blurRadius: 16.h)
-                                  ]),
-                              padding: const EdgeInsets.all(3),
-                              child: getSvgImage(controller.trendingLists[index].select == true
-                                  ? "save_bold.svg"
-                                  : "save.svg"),
+        FutureBuilder(
+          future: Services().getAddCourse(context),
+          builder: (context, snapshot) {
+            log("snapshot.hasData: ${snapshot.hasData}");
+            log("snapshot.data: ${snapshot.data}");
+            if (snapshot.hasData == false) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            addCourses = snapshot.data as List;
+            return GetBuilder<HomeScreenController>(
+              init: HomeScreenController(),
+              builder: (controller) => Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: GridView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                      maxCrossAxisExtent: 200,
+                      childAspectRatio: .82,
+                      crossAxisSpacing: 5,
+                      mainAxisSpacing: 5),
+                  primary: false,
+                  shrinkWrap: true,
+                  itemCount: addCourses.length,
+                  scrollDirection: Axis.vertical,
+                  itemBuilder: (context, index) {
+                    ModelTrending modelTrending = controller.trendingLists[index];
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => CourseDetail(
+                                      heading: addCourses[index]["heading"],
+                                      lessons: addCourses[index]["lessons"],
+                                      description: addCourses[index]["description"],
+                                      courseDuration: addCourses[index]["courseDuration"],
+                                      level: addCourses[index]["level"],
+                                      medium: addCourses[index]["medium"],
+                                      subjectName: addCourses[index]["subjectName"],
+                                    )));
+                        // Constant.sendToNext(context, Routes.courseDetailRoute);
+                      },
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            height: 172.h,
+                            width: 177.h,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: NetworkImage(addCourses[index]["image"]),
+                                    fit: BoxFit.fill),
+                                borderRadius: BorderRadius.circular(12.h)),
+                            padding:
+                                EdgeInsets.only(left: 10.h, top: 10.h, right: 147.h, bottom: 142.h),
+                            child: GestureDetector(
+                              onTap: () {
+                                controller.selectChange(index);
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(20.h),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: '#2423408F'.toColor(),
+                                          offset: const Offset(-4, 5),
+                                          blurRadius: 16.h)
+                                    ]),
+                                padding: const EdgeInsets.all(3),
+                                child: getSvgImage(controller.trendingLists[index].select == true
+                                    ? "save_bold.svg"
+                                    : "save.svg"),
+                              ),
                             ),
                           ),
-                        ),
-                        getVerSpace(8.h),
-                        getMultilineCustomFont(modelTrending.name ?? '', 15.sp, Colors.black,
-                            fontWeight: FontWeight.w700, txtHeight: 1.53.h)
-                      ],
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
+                          getVerSpace(8.h),
+                          getMultilineCustomFont(
+                              addCourses[index]["courseName"] ?? '', 15.sp, Colors.black,
+                              fontWeight: FontWeight.w700, txtHeight: 1.53.h)
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
+            );
+          },
         )
       ],
     );

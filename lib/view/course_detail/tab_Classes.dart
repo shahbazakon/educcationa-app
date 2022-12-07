@@ -74,133 +74,177 @@ class _TabClassesState extends State<TabClasses> {
               baseColor: Colors.white,
               borderRadius: BorderRadius.circular(22.h),
               children: [
-                getPaddingWidget(
-                  EdgeInsets.only(left: 12.h, right: 20.h),
-                  Column(
-                    children: [
-                      getVerSpace(15.h),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: ListView.separated(
+                    itemCount: 4,
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      return Table(
+                        // border: TableBorder.all(width: 1.0, color: Colors.red),
+                        defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                        columnWidths: const {
+                          0: FlexColumnWidth(2),
+                          1: FlexColumnWidth(6),
+                          2: FlexColumnWidth(2),
+                          3: FlexColumnWidth(2),
+                          4: FlexColumnWidth(5),
+                        },
                         children: [
-                          Expanded(
-                            flex: 1,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                getSvgImage("video-circle.svg", height: 20.h, width: 20.h),
-                                getHorSpace(12.h),
-                                Expanded(
-                                  flex: 1,
-                                  child: getMultilineCustomFont(
-                                      "Lorem ipsum dolor sit amet consectetur adipiscing elit",
-                                      14.sp,
-                                      Colors.black,
-                                      fontWeight: FontWeight.w500,
-                                      txtHeight: 1.5.h),
-                                )
-                              ],
+                          TableRow(children: [
+                            getSvgImage("video-circle.svg", height: 20.h, width: 20.h),
+                            const Text(
+                              "View Class 4",
+                              style: TextStyle(fontWeight: FontWeight.w600),
                             ),
-                          ),
-                          Row(
-                            children: [
-                              getHorSpace(14.h),
-                              getCustomFont("10", 14.sp, accentColor, 1,
-                                  fontWeight: FontWeight.w500, txtHeight: 1.5.h)
-                            ],
-                          )
-                        ],
-                      ),
-                      getVerSpace(12.h),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                getSvgImage("document.svg", height: 20.h, width: 20.h),
-                                getHorSpace(12.h),
-                                Expanded(
-                                  flex: 1,
-                                  child: getMultilineCustomFont(
-                                      "Lorem ipsum dolor sit amet", 14.sp, Colors.black,
-                                      fontWeight: FontWeight.w500, txtHeight: 1.5.h),
-                                )
-                              ],
+                            const Icon(
+                              Icons.file_copy_outlined,
+                              color: Colors.amberAccent,
                             ),
-                          ),
-                          Row(
-                            children: [
-                              getHorSpace(14.h),
-                              getCustomFont("9", 14.sp, accentColor, 1,
-                                  fontWeight: FontWeight.w500, txtHeight: 1.5.h)
-                            ],
-                          )
-                        ],
-                      ),
-                      getVerSpace(12.h),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                getSvgImage("video-circle.svg", height: 20.h, width: 20.h),
-                                getHorSpace(12.h),
-                                Expanded(
-                                  flex: 1,
-                                  child: getMultilineCustomFont(
-                                      "Lorem ipsum dolor sit amet", 14.sp, Colors.black,
-                                      fontWeight: FontWeight.w500, txtHeight: 1.5.h),
-                                )
-                              ],
+                            const Icon(
+                              Icons.file_download_outlined,
+                              color: Colors.indigo,
                             ),
-                          ),
-                          Row(
-                            children: [
-                              getHorSpace(14.h),
-                              getCustomFont("7", 14.sp, accentColor, 1,
-                                  fontWeight: FontWeight.w500, txtHeight: 1.5.h)
-                            ],
-                          )
+                            const Text(
+                              "22/02/2022",
+                              textAlign: TextAlign.end,
+                            )
+                          ])
                         ],
-                      ),
-                      getVerSpace(12.h),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                getSvgImage("document.svg", height: 20.h, width: 20.h),
-                                getHorSpace(12.h),
-                                Expanded(
-                                  flex: 1,
-                                  child: getMultilineCustomFont(
-                                      "Lorem ipsum dolor sit amet", 14.sp, Colors.black,
-                                      fontWeight: FontWeight.w500, txtHeight: 1.5.h),
-                                )
-                              ],
-                            ),
-                          ),
-                          Row(
-                            children: [
-                              getHorSpace(14.h),
-                              getCustomFont("12", 14.sp, accentColor, 1,
-                                  fontWeight: FontWeight.w500, txtHeight: 1.5.h)
-                            ],
-                          )
-                        ],
-                      ),
-                      getVerSpace(20.h)
-                    ],
+                      );
+                    },
+                    separatorBuilder: (BuildContext context, int index) {
+                      return const Divider();
+                    },
                   ),
-                )
+                ),
+                // getPaddingWidget(
+                //   EdgeInsets.only(left: 12.h, right: 20.h),
+                //   Column(
+                //     children: [
+                //       getVerSpace(15.h),
+                //       Row(
+                //         crossAxisAlignment: CrossAxisAlignment.start,
+                //         children: [
+                //           Expanded(
+                //             flex: 1,
+                //             child: Row(
+                //               crossAxisAlignment: CrossAxisAlignment.start,
+                //               children: [
+                //                 getSvgImage("video-circle.svg", height: 20.h, width: 20.h),
+                //                 getHorSpace(12.h),
+                //                 Expanded(
+                //                   flex: 1,
+                //                   child: getMultilineCustomFont(
+                //                       "Lorem ipsum dolor sit amet consectetur adipiscing elit",
+                //                       14.sp,
+                //                       Colors.black,
+                //                       fontWeight: FontWeight.w500,
+                //                       txtHeight: 1.5.h),
+                //                 )
+                //               ],
+                //             ),
+                //           ),
+                //           Row(
+                //             children: [
+                //               getHorSpace(14.h),
+                //               getCustomFont("10", 14.sp, accentColor, 1,
+                //                   fontWeight: FontWeight.w500, txtHeight: 1.5.h)
+                //             ],
+                //           )
+                //         ],
+                //       ),
+                //       getVerSpace(12.h),
+                //       Row(
+                //         crossAxisAlignment: CrossAxisAlignment.start,
+                //         children: [
+                //           Expanded(
+                //             flex: 1,
+                //             child: Row(
+                //               crossAxisAlignment: CrossAxisAlignment.start,
+                //               children: [
+                //                 getSvgImage("document.svg", height: 20.h, width: 20.h),
+                //                 getHorSpace(12.h),
+                //                 Expanded(
+                //                   flex: 1,
+                //                   child: getMultilineCustomFont(
+                //                       "Lorem ipsum dolor sit amet", 14.sp, Colors.black,
+                //                       fontWeight: FontWeight.w500, txtHeight: 1.5.h),
+                //                 )
+                //               ],
+                //             ),
+                //           ),
+                //           Row(
+                //             children: [
+                //               getHorSpace(14.h),
+                //               getCustomFont("9", 14.sp, accentColor, 1,
+                //                   fontWeight: FontWeight.w500, txtHeight: 1.5.h)
+                //             ],
+                //           )
+                //         ],
+                //       ),
+                //       getVerSpace(12.h),
+                //       Row(
+                //         crossAxisAlignment: CrossAxisAlignment.start,
+                //         children: [
+                //           Expanded(
+                //             flex: 1,
+                //             child: Row(
+                //               crossAxisAlignment: CrossAxisAlignment.start,
+                //               children: [
+                //                 getSvgImage("video-circle.svg", height: 20.h, width: 20.h),
+                //                 getHorSpace(12.h),
+                //                 Expanded(
+                //                   flex: 1,
+                //                   child: getMultilineCustomFont(
+                //                       "Lorem ipsum dolor sit amet", 14.sp, Colors.black,
+                //                       fontWeight: FontWeight.w500, txtHeight: 1.5.h),
+                //                 )
+                //               ],
+                //             ),
+                //           ),
+                //           Row(
+                //             children: [
+                //               getHorSpace(14.h),
+                //               getCustomFont("7", 14.sp, accentColor, 1,
+                //                   fontWeight: FontWeight.w500, txtHeight: 1.5.h)
+                //             ],
+                //           )
+                //         ],
+                //       ),
+                //       getVerSpace(12.h),
+                //       Row(
+                //         crossAxisAlignment: CrossAxisAlignment.start,
+                //         children: [
+                //           Expanded(
+                //             flex: 1,
+                //             child: Row(
+                //               crossAxisAlignment: CrossAxisAlignment.start,
+                //               children: [
+                //                 getSvgImage("document.svg", height: 20.h, width: 20.h),
+                //                 getHorSpace(12.h),
+                //                 Expanded(
+                //                   flex: 1,
+                //                   child: getMultilineCustomFont(
+                //                       "Lorem ipsum dolor sit amet", 14.sp, Colors.black,
+                //                       fontWeight: FontWeight.w500, txtHeight: 1.5.h),
+                //                 )
+                //               ],
+                //             ),
+                //           ),
+                //           Row(
+                //             children: [
+                //               getHorSpace(14.h),
+                //               getCustomFont("12", 14.sp, accentColor, 1,
+                //                   fontWeight: FontWeight.w500, txtHeight: 1.5.h)
+                //             ],
+                //           )
+                //         ],
+                //       ),
+                //       getVerSpace(20.h)
+                //     ],
+                //   ),
+                // )
               ],
             ),
           );

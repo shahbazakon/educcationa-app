@@ -3,52 +3,66 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../Constants/color_data.dart';
 import '../../Constants/widget_utils.dart';
-import '../../data/data_file.dart';
 import '../../model/model_detail_category.dart';
 
 class TabOverView extends StatefulWidget {
-  const TabOverView({Key? key}) : super(key: key);
+  final String? courseDuration;
+  final String? heading;
+  final String? description;
+  final String? lessons;
+  final String? medium;
+  final String? level;
+  final List? subjectName;
+  const TabOverView(
+      {Key? key,
+      this.courseDuration,
+      this.description,
+      this.heading,
+      this.lessons,
+      this.medium,
+      this.level,
+      this.subjectName})
+      : super(key: key);
 
   @override
   State<TabOverView> createState() => _TabOverViewState();
 }
 
 class _TabOverViewState extends State<TabOverView> {
-  List<ModelDetailCategory> detailCategoryLists = DataFile.detailCategoryList;
   List<String> category = ["History", "Chemistry", "Physics", "Geology", "Mathematica"];
 
   @override
   Widget build(BuildContext context) {
+    List<ModelDetailCategory> detailCategoryList = [
+      ModelDetailCategory("detail_cat1.svg", widget.lessons),
+      ModelDetailCategory("detail_cat2.svg", "Lavel ${widget.level}"),
+      ModelDetailCategory("detail_cat3.svg", widget.courseDuration),
+      ModelDetailCategory("detail_cat4.svg", widget.medium),
+      ModelDetailCategory("detail_cat6.svg", "Fully Secure")
+    ];
+
     return ListView(
       children: [
         getPaddingWidget(
           EdgeInsets.symmetric(horizontal: 20.h),
-          getCustomFont("UI UX Design Replace with Foundation Batch 2023", 18.sp, Colors.black, 1,
+          getCustomFont(widget.heading ?? "", 18.sp, Colors.black, 1,
               fontWeight: FontWeight.w500, txtHeight: 1.66.h),
         ),
         getVerSpace(4.h),
         getPaddingWidget(
           EdgeInsets.symmetric(horizontal: 20.h),
-          getRichText(
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ",
-              subtextColor,
-              FontWeight.w500,
-              14.sp,
-              "Learn more.",
-              accentColor,
-              FontWeight.w700,
-              14.sp,
-              txtHeight: 1.5.h,
-              textAlign: TextAlign.start),
+          getRichText(widget.description ?? "", subtextColor, FontWeight.w500, 14.sp,
+              " Learn more.", accentColor, FontWeight.w700, 14.sp,
+              txtHeight: 1.5.h, textAlign: TextAlign.start),
         ),
         getVerSpace(20.h),
         GridView.builder(
             padding: EdgeInsets.symmetric(horizontal: 20.h),
             primary: false,
             shrinkWrap: true,
-            itemCount: detailCategoryLists.length,
+            itemCount: detailCategoryList.length,
             itemBuilder: (context, index) {
-              ModelDetailCategory modelDetailCategory = detailCategoryLists[index];
+              ModelDetailCategory modelDetailCategory = detailCategoryList[index];
               return Container(
                 decoration: BoxDecoration(
                     color: "#F3F6FF".toColor(), borderRadius: BorderRadius.circular(22.h)),

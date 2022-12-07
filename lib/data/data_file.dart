@@ -5,7 +5,6 @@ import '../model/model_chat.dart';
 import '../model/model_contact_us.dart';
 import '../model/model_country.dart';
 import '../model/model_course.dart';
-import '../model/model_detail_category.dart';
 import '../model/model_faq.dart';
 import '../model/model_home_slider.dart';
 import '../model/model_intro.dart';
@@ -95,14 +94,6 @@ class DataFile {
         "12 .4 Hrs", "Jane Cooper", 140.00, false, "recent_person2.png"),
     ModelRecent("recent3.png", "Full course of coding with diffirent custom field", 3.9, "10.00Hrs",
         "Wade Warren", 150.00, false, "recent_person2.png")
-  ];
-
-  static List<ModelDetailCategory> detailCategoryList = [
-    ModelDetailCategory("detail_cat1.svg", "12 Lessons"),
-    ModelDetailCategory("detail_cat2.svg", "Beginner"),
-    ModelDetailCategory("detail_cat3.svg", "6 Weeks"),
-    ModelDetailCategory("detail_cat4.svg", "English"),
-    ModelDetailCategory("detail_cat6.svg", "Fully Secure")
   ];
 
   static List<ModelLesson> lessonList = [
