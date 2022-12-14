@@ -6,6 +6,7 @@ import '../../../Constants/constant.dart';
 import '../../../Constants/widget_utils.dart';
 import '../../../dialog/logout_dialog.dart';
 import '../../../routes/app_routes.dart';
+import '../../test_Series/test_series_screen.dart';
 
 class TabProfile extends StatefulWidget {
   const TabProfile({Key? key}) : super(key: key);
@@ -52,6 +53,11 @@ class _TabProfileState extends State<TabProfile> {
                 ),
                 getVerSpace(20.h),
                 getProfileWidget("My Projects", () {}, "book.svg"),
+                getVerSpace(20.h),
+                getProfileWidget("Test Series", () {
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => const TestSeriesScreen()));
+                }, "book.svg"),
                 getVerSpace(20.h),
                 getProfileWidget("Saved Course", () {
                   Constant.sendToNext(context, Routes.savedCourseRoute);

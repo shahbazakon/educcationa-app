@@ -59,7 +59,7 @@ dev_dependencies:
   bot_toast: ^4.0.3
   http: ^0.13.5
   intl:
-
+  dotted_border: ^2.0.0+3
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
