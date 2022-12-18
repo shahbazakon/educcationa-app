@@ -19,6 +19,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       initialRoute: "/",
       routes: AppPages.routes,
+      // home: DocumentPicker(),
     );
   }
 }
