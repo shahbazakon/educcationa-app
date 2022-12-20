@@ -103,7 +103,7 @@ class _TestSeriesScreenState extends State<TestSeriesScreen> {
             shrinkWrap: true,
             itemBuilder: (context, index) {
               return Container(
-                margin: EdgeInsets.symmetric(horizontal: 20.h, vertical: 10),
+                margin: EdgeInsets.symmetric(horizontal: 20.h, vertical: 5.h),
                 padding: EdgeInsets.all(12.h),
                 decoration: BoxDecoration(
                     color: Colors.white,

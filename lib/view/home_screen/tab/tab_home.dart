@@ -15,7 +15,7 @@ import '../../../model/model_category.dart';
 import '../../../model/model_home_slider.dart';
 import '../../../model/model_trending.dart';
 import '../../../routes/app_routes.dart';
-import '../../../services/services.dart';
+import '../../../services/API Services/cources_services.dart';
 import '../../course_detail/course_detail.dart';
 
 class TabHome extends StatefulWidget {
@@ -85,7 +85,7 @@ class _TabHomeState extends State<TabHome> {
         ),
         getVerSpace(16.h),
         FutureBuilder(
-          future: Services().getAddCourse(context),
+          future: CoursesServices().getAddCourse(context),
           builder: (context, snapshot) {
             log("snapshot.hasData: ${snapshot.hasData}");
             log("snapshot.data: ${snapshot.data}");

@@ -11,6 +11,7 @@ import '../../Constants/widget_utils.dart';
 import '../../controller/controller.dart';
 import '../../data/data_file.dart';
 import '../../model/model_bottom.dart';
+import '../test_Series/test_series_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -28,8 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
   static final List<Widget> _widgetOptions = <Widget>[
     const TabHome(),
     const TabCourse(),
-    const TabCourse(),
-    // const TabChat(),
+    const TestSeriesScreen(),
     const TabProfile()
   ];
   List<ModelBottom> bottomLists = DataFile.bottomList;
@@ -81,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Container buildBottomNavigation(HomeController controller) {
-    List bottomLabelList = ["Home", "Courses", "Chat", "Profile"];
+    List bottomLabelList = ["Home", "Courses", "Test", "Profile"];
     return Container(
       height: 75.h,
       width: double.infinity,

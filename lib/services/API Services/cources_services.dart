@@ -1,11 +1,11 @@
 import 'dart:developer';
 
-import 'APIs.dart';
-import 'api_services.dart';
+import '../APIs.dart';
+import '../api_services.dart';
 
-class Services {
+class CoursesServices {
   APIService? apiService;
-  Services() {
+  CoursesServices() {
     apiService = APIService();
   }
 
@@ -27,6 +27,7 @@ class Services {
     final response = await apiService!
         .getData(context: context, url: Apis.getUploadContent, isAuthenticated: true);
     log("response data : $response ", name: "getLiveCourses");
+
     return response;
   }
 }

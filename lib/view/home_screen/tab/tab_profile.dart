@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../Constants/color_data.dart';
 import '../../../Constants/constant.dart';
 import '../../../Constants/widget_utils.dart';
 import '../../../dialog/logout_dialog.dart';
 import '../../../routes/app_routes.dart';
-import '../../test_Series/test_series_screen.dart';
 
 class TabProfile extends StatefulWidget {
   const TabProfile({Key? key}) : super(key: key);
@@ -18,6 +18,13 @@ class TabProfile extends StatefulWidget {
 class _TabProfileState extends State<TabProfile> {
   void backClick() {
     Constant.backToPrev(context);
+  }
+
+  final Uri _url = Uri.parse('https://www.india.gov.in/');
+  Future<void> _launchUrl() async {
+    if (!await launchUrl(_url)) {
+      throw 'Could not launch $_url';
+    }
   }
 
   @override
@@ -54,10 +61,9 @@ class _TabProfileState extends State<TabProfile> {
                 getVerSpace(20.h),
                 getProfileWidget("My Projects", () {}, "book.svg"),
                 getVerSpace(20.h),
-                getProfileWidget("Test Series", () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => const TestSeriesScreen()));
-                }, "book.svg"),
+                getProfileWidget("Current Affairs", () {
+                  _launchUrl();
+                }, "chat.svg"),
                 getVerSpace(20.h),
                 getProfileWidget("Saved Course", () {
                   Constant.sendToNext(context, Routes.savedCourseRoute);

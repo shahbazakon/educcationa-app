@@ -4,8 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../Constants/constant.dart';
 import '../../../Constants/widget_utils.dart';
-import '../../../my_course/completed_screen.dart';
-import '../../../my_course/ongoing_screen.dart';
 
 class TabCourse extends StatefulWidget {
   const TabCourse({Key? key}) : super(key: key);
@@ -45,20 +43,25 @@ class _TabCourseState extends State<TabCourse> with TickerProviderStateMixin {
           getToolBar("My Courses", () {
             backClick();
           }),
-          getVerSpace(20.h),
-          buildTabBar(),
-          getVerSpace(20.h),
-          Expanded(
-            flex: 1,
-            child: PageView(
-              controller: _pController,
-              onPageChanged: (value) {
-                _tabController.animateTo(value,
-                    duration: const Duration(milliseconds: 300), curve: Curves.ease);
-              },
-              children: const [OngoingScreen(), CompletedScreen()],
-            ),
+          Spacer(),
+          const Center(
+            child: Text("No Courses purchased"),
           ),
+          Spacer(),
+          // getVerSpace(20.h),
+          // buildTabBar(),
+          // getVerSpace(20.h),
+          // Expanded(
+          //   flex: 1,
+          //   child: PageView(
+          //     controller: _pController,
+          //     onPageChanged: (value) {
+          //       _tabController.animateTo(value,
+          //           duration: const Duration(milliseconds: 300), curve: Curves.ease);
+          //     },
+          //     children: const [OngoingScreen(), CompletedScreen()],
+          //   ),
+          // ),
         ],
       ),
     );

@@ -66,10 +66,10 @@ class DataFile {
   ];
 
   static List<ModelCategory> categoryList = [
-    ModelCategory("category1.svg", "Design", "#FFF6E5"),
-    ModelCategory("category2.svg", "Code", "#FEE9EB"),
-    ModelCategory("category3.svg", "Business", "#ECF6FF"),
-    ModelCategory("category4.svg", "Photography", "#DEFFF5")
+    ModelCategory("category1.svg", "Sociology", "#FFF6E5"),
+    ModelCategory("category2.svg", "History", "#FEE9EB"),
+    ModelCategory("category3.svg", "Geography", "#ECF6FF"),
+    ModelCategory("category4.svg", "PSIR", "#DEFFF5")
   ];
 
   static List<ModelTrending> trendingList = [

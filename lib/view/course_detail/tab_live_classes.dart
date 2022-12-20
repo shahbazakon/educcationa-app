@@ -11,7 +11,7 @@ import '../../controller/controller.dart';
 import '../../data/data_file.dart';
 import '../../model/model_lesson.dart';
 import '../../model/model_review.dart';
-import '../../services/services.dart';
+import '../../services/API Services/cources_services.dart';
 
 class TabLiveClasses extends StatefulWidget {
   YoutubePlayerController? videoController;
@@ -27,7 +27,7 @@ class _TabLiveClassesState extends State<TabLiveClasses> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: Services().getLiveCourses(context),
+      future: CoursesServices().getLiveCourses(context),
       builder: (context, snapshot) {
         log('snapshot response : ${snapshot.data}', name: "${context.widget}");
 
