@@ -20,10 +20,18 @@ class _TabProfileState extends State<TabProfile> {
     Constant.backToPrev(context);
   }
 
-  final Uri _url = Uri.parse('https://www.india.gov.in/');
-  Future<void> _launchUrl() async {
-    if (!await launchUrl(_url)) {
-      throw 'Could not launch $_url';
+  final Uri currentAffairsURL = Uri.parse('https://www.india.gov.in/');
+  final Uri iqraWebURL = Uri.parse('https://www.iqraias.com/');
+
+  Future<void> _launchCurrentAffairsUrl() async {
+    if (!await launchUrl(currentAffairsURL)) {
+      throw 'Could not launch $currentAffairsURL';
+    }
+  }
+
+  Future<void> _launchIqraWebUrl() async {
+    if (!await launchUrl(iqraWebURL)) {
+      throw 'Could not launch $iqraWebURL';
     }
   }
 
@@ -40,9 +48,9 @@ class _TabProfileState extends State<TabProfile> {
             flex: 1,
             child: ListView(
               children: [
-                getAssetImage("profile_image.png", width: 100.h, height: 100.h),
+                getAssetImage("chat5.png", width: 100.h, height: 100.h),
                 getVerSpace(12.h),
-                getCustomFont("Prakhar Kulshrestha ", 18.sp, Colors.black, 1,
+                getCustomFont("Abhishek Sharma", 18.sp, Colors.black, 1,
                     fontWeight: FontWeight.w500, txtHeight: 1.66, textAlign: TextAlign.center),
                 getVerSpace(2.h),
                 Row(
@@ -59,10 +67,12 @@ class _TabProfileState extends State<TabProfile> {
                   ],
                 ),
                 getVerSpace(20.h),
-                getProfileWidget("My Projects", () {}, "book.svg"),
+                getProfileWidget("Iqra Web", () {
+                  _launchIqraWebUrl();
+                }, "book.svg"),
                 getVerSpace(20.h),
                 getProfileWidget("Current Affairs", () {
-                  _launchUrl();
+                  _launchCurrentAffairsUrl();
                 }, "chat.svg"),
                 getVerSpace(20.h),
                 getProfileWidget("Saved Course", () {

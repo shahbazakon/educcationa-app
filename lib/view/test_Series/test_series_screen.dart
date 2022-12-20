@@ -93,10 +93,10 @@ class _TestSeriesScreenState extends State<TestSeriesScreen> {
                 onTap: _pickFileInProgress ? null : _pickDocument,
                 icon: const Icon(Icons.file_upload_outlined),
                 color: Colors.blue.shade100),
-            // testUploadButton(size,
-            //     title: "Take Photo",
-            //     icon: const Icon(Icons.camera_alt_outlined),
-            //     color: Colors.redAccent.shade100),
+            testUploadButton(size,
+                title: "Take Photo",
+                icon: const Icon(Icons.camera_alt_outlined),
+                color: Colors.redAccent.shade100),
           ]),
           ListView.builder(
             itemCount: documentListPth.length,
@@ -156,7 +156,7 @@ class _TestSeriesScreenState extends State<TestSeriesScreen> {
         radius: Radius.circular(18.h),
         child: Container(
           height: size.height * .06,
-          width: size.width * .9,
+          width: size.width * .42,
           decoration: BoxDecoration(
             color: color,
             borderRadius: BorderRadius.circular(16.h),

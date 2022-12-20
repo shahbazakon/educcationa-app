@@ -9,6 +9,7 @@ import '../Constants/constant.dart';
 import '../Constants/pref_data.dart';
 import '../Constants/widget_utils.dart';
 import '../routes/app_routes.dart';
+import '../utils/assets_path.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -50,7 +51,7 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Image.asset("assets/iqra_images/iqra_logo.jpg", height: 200.h),
+            Image.asset(AppAssets.logo, height: 200.h),
           ],
         ),
       ),

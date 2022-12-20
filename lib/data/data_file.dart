@@ -15,6 +15,7 @@ import '../model/model_recent.dart';
 import '../model/model_review.dart';
 import '../model/model_sub_course.dart';
 import '../model/model_trending.dart';
+import '../utils/assets_path.dart';
 
 class DataFile {
   static List<ModelIntro> introList = [
@@ -60,16 +61,22 @@ class DataFile {
   ];
 
   static List<ModelHomeSlider> homeSliderList = [
-    ModelHomeSlider('What you want to learn?', "slider1.png", "#C9ECFF"),
-    ModelHomeSlider("Get online certificate.", "slider2.png", "#FFE9C9"),
-    ModelHomeSlider("Want to get best advicer?", "slider3.png", "#FFC9C9")
+    ModelHomeSlider('What you want to learn?', AppAssets.logo, "#C9ECFF"),
+    ModelHomeSlider("Get online certificate.", AppAssets.image2, "#FFE9C9"),
+    ModelHomeSlider("Want to get best advicer?", AppAssets.image3, "#FFC9C9")
+  ];
+
+  static List<String> bannerImageList = [
+    AppAssets.image1,
+    AppAssets.image2,
+    AppAssets.image3,
   ];
 
   static List<ModelCategory> categoryList = [
-    ModelCategory("category1.svg", "Sociology", "#FFF6E5"),
-    ModelCategory("category2.svg", "History", "#FEE9EB"),
-    ModelCategory("category3.svg", "Geography", "#ECF6FF"),
-    ModelCategory("category4.svg", "PSIR", "#DEFFF5")
+    ModelCategory(AppAssets.logoPNG, "Sociology", "#FFF6E5"),
+    ModelCategory(AppAssets.logoPNG, "History", "#FEE9EB"),
+    ModelCategory(AppAssets.logoPNG, "Geography", "#ECF6FF"),
+    ModelCategory(AppAssets.logoPNG, "PSIR", "#DEFFF5")
   ];
 
   static List<ModelTrending> trendingList = [

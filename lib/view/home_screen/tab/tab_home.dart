@@ -16,6 +16,7 @@ import '../../../model/model_home_slider.dart';
 import '../../../model/model_trending.dart';
 import '../../../routes/app_routes.dart';
 import '../../../services/API Services/cources_services.dart';
+import '../../../utils/assets_path.dart';
 import '../../course_detail/course_detail.dart';
 
 class TabHome extends StatefulWidget {
@@ -30,6 +31,7 @@ class _TabHomeState extends State<TabHome> {
   List<ModelHomeSlider> homeSliderLists = DataFile.homeSliderList;
   List<ModelCategory> categoryLists = DataFile.categoryList;
   List<dynamic> addCourses = [];
+  List<String> bannerListImage = DataFile.bannerImageList;
 
   @override
   Widget build(BuildContext context) {
@@ -201,8 +203,8 @@ class _TabHomeState extends State<TabHome> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  getSvgImage(modelCategory.image ?? ""),
-                  getVerSpace(17.h),
+                  Image.asset(height: 60.h, modelCategory.image ?? ""),
+                  getVerSpace(5.h),
                   getCustomFont(modelCategory.name ?? "", 14.sp, Colors.black, 1,
                       fontWeight: FontWeight.w700, txtHeight: 1.5.h)
                 ],
@@ -234,46 +236,56 @@ class _TabHomeState extends State<TabHome> {
 
   CarouselSlider buildSliderList() {
     return CarouselSlider.builder(
-        itemCount: homeSliderLists.length,
+        itemCount: bannerListImage.length,
         itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) {
           ModelHomeSlider modelHome = homeSliderLists[itemIndex];
-          return Container(
-            height: 150.h,
-            width: 322.w,
-            decoration: BoxDecoration(
-                color: modelHome.color!.toColor(), borderRadius: BorderRadius.circular(22.h)),
-            padding: EdgeInsets.only(left: 20.h),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: getPaddingWidget(
-                    EdgeInsets.symmetric(vertical: 20.h),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: getMultilineCustomFont(modelHome.name ?? "", 18.sp, Colors.black,
-                              fontWeight: FontWeight.w700, txtHeight: 1.5.h),
-                        ),
-                        getCustomFont("Get Start", 18.sp, accentColor, 1,
-                            fontWeight: FontWeight.w700, txtHeight: 1.5.h)
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  width: 160.h,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage(Constant.assetImagePath + modelHome.image.toString()),
-                          fit: BoxFit.fill)),
-                )
-              ],
+          log("modelHome.image.toString(): ${modelHome.image.toString()}");
+          log("AppAssets.image1: ${AppAssets.image1}");
+          return ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: SizedBox(
+              height: 150.h,
+              width: 300.w,
+              child: Image.asset(bannerListImage[itemIndex], fit: BoxFit.cover),
             ),
           );
+
+          // return Container(
+          //   height: 150.h,
+          //   width: 322.w,
+          //   decoration: BoxDecoration(
+          //       color: modelHome.color!.toColor(), borderRadius: BorderRadius.circular(22.h)),
+          //   padding: EdgeInsets.only(left: 20.h),
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //     children: [
+          //       Expanded(
+          //         child: getPaddingWidget(
+          //           EdgeInsets.symmetric(vertical: 20.h),
+          //           Column(
+          //             crossAxisAlignment: CrossAxisAlignment.start,
+          //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //             children: [
+          //               Expanded(
+          //                 flex: 1,
+          //                 child: getMultilineCustomFont(modelHome.name ?? "", 18.sp, Colors.black,
+          //                     fontWeight: FontWeight.w700, txtHeight: 1.5.h),
+          //               ),
+          //               getCustomFont("Get Start", 18.sp, accentColor, 1,
+          //                   fontWeight: FontWeight.w700, txtHeight: 1.5.h)
+          //             ],
+          //           ),
+          //         ),
+          //       ),
+          //       Container(
+          //         width: 160.h,
+          //         decoration: BoxDecoration(
+          //             image: DecorationImage(
+          //                 image: AssetImage(modelHome.image.toString()), fit: BoxFit.fill)),
+          //       )
+          //     ],
+          //   ),
+          // );
         },
         options: CarouselOptions(
             height: 150,
@@ -330,9 +342,9 @@ class _TabHomeState extends State<TabHome> {
       EdgeInsets.symmetric(horizontal: 20.h),
       Row(
         children: [
-          getAssetImage("profile_icon.png", width: 50.h, height: 50.h),
+          getAssetImage("chat5.png", width: 50.h, height: 50.h),
           getHorSpace(10.49.h),
-          getCustomFont("Welcome,Kevin", 22.sp, Colors.black, 1,
+          getCustomFont("Welcome,Abhishek", 22.sp, Colors.black, 1,
               fontWeight: FontWeight.w700, textAlign: TextAlign.start)
         ],
       ),
