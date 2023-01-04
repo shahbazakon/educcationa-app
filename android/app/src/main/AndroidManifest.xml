@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.techasstute.educationapp.education_app">
+    package="com.techasstute.iqra_ias">
    <application
         android:label="Iqra"
         android:name="${applicationName}"

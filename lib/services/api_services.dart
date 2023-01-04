@@ -227,16 +227,10 @@ class APIService {
   logout(BuildContext context) async {
     LocalStorage.prefs?.setBool("isLogIn", false);
     LocalStorage.clearLocal();
-    // Navigator.of(context).pushAndRemoveUntil(
-    //   // the new route
-    //   MaterialPageRoute(
-    //     builder: (BuildContext context) =>  SignInScreen(),
-    //   ),
-    //   (Route route) => false,
-    // );
   }
 
   Future<Map<String, String>> _getHeaders({required bool isAuthenticated}) async {
+    // TODO: need to change the  header
     Map<String, String> headers = {
       "ApiKey": "pgH7QzFHJx4w46fI~5Uzi4RvtTwlEXp",
       "content-type": "application/json",
@@ -244,9 +238,6 @@ class APIService {
     };
     if (isAuthenticated) {
       String? token = await LocalStorage.getPreferencesValue(LocalStorage.token);
-      // TODO need to remove this else blockn
-      // token =
-      //     "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjMzMTk3NTE4NTAiLCJuYmYiOjE2NTUwOTk5NjgsImV4cCI6MTY1NTM1MTk2OCwiaWF0IjoxNjU1MDk5OTY4fQ.IgxHg057Db3H3NaC1-K2ZwKsrxREAmy8xm0vnyRMDkI";
       log("token is:$token");
       if (token != null) {
         headers.addAll({"Authorization": token});

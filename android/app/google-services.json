@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "179309610361",
+    "project_id": "iqra-ias",
+    "storage_bucket": "iqra-ias.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:179309610361:android:7c57946a071fc159345ba8",
+        "android_client_info": {
+          "package_name": "com.techasstute.iqra_ias"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "179309610361-5n622e1apmrkl3jprj46tq9ug9mjgm4o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnnSt3qmH6VwJQH79Gekl3UuB5YH9E9Ic"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "179309610361-5n622e1apmrkl3jprj46tq9ug9mjgm4o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -90,7 +90,7 @@ class _TabHomeState extends State<TabHome> {
           future: CoursesServices().getAddCourse(context),
           builder: (context, snapshot) {
             log("snapshot.hasData: ${snapshot.hasData}");
-            log("snapshot.data: ${snapshot.data}");
+            log("snapshot.data: ${snapshot.data}", name: "${context.widget}");
             if (snapshot.hasData == false) {
               return const Center(
                 child: CircularProgressIndicator(),

@@ -1,4 +1,4 @@
-package com.techasstute.educationapp.education_app;
+package com.techasstute.iqra_ias;
 
 import io.flutter.embedding.android.FlutterActivity;
 

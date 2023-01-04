@@ -73,10 +73,10 @@ class DataFile {
   ];
 
   static List<ModelCategory> categoryList = [
-    ModelCategory(AppAssets.logoPNG, "Sociology", "#FFF6E5"),
-    ModelCategory(AppAssets.logoPNG, "History", "#FEE9EB"),
-    ModelCategory(AppAssets.logoPNG, "Geography", "#ECF6FF"),
-    ModelCategory(AppAssets.logoPNG, "PSIR", "#DEFFF5")
+    ModelCategory(AppAssets.sociology, "Sociology", "#FFF6E5"),
+    ModelCategory(AppAssets.history, "History", "#FEE9EB"),
+    ModelCategory(AppAssets.geography, "Geography", "#ECF6FF"),
+    ModelCategory(AppAssets.psir, "PSIR", "#DEFFF5")
   ];
 
   static List<ModelTrending> trendingList = [

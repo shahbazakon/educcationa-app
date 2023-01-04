@@ -20,7 +20,7 @@ class _TabProfileState extends State<TabProfile> {
     Constant.backToPrev(context);
   }
 
-  final Uri currentAffairsURL = Uri.parse('https://www.india.gov.in/');
+  final Uri currentAffairsURL = Uri.parse('https://iqra.techastute.in/');
   final Uri iqraWebURL = Uri.parse('https://www.iqraias.com/');
 
   Future<void> _launchCurrentAffairsUrl() async {
@@ -67,9 +67,9 @@ class _TabProfileState extends State<TabProfile> {
                   ],
                 ),
                 getVerSpace(20.h),
-                getProfileWidget("Iqra Web", () {
+                getProfileWidget("iqraias.com", () {
                   _launchIqraWebUrl();
-                }, "book.svg"),
+                }, "website.svg"),
                 getVerSpace(20.h),
                 getProfileWidget("Current Affairs", () {
                   _launchCurrentAffairsUrl();

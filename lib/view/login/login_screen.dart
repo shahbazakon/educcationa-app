@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 
 import '../../Constants/color_data.dart';
 import '../../Constants/constant.dart';
-import '../../Constants/pref_data.dart';
 import '../../Constants/widget_utils.dart';
 import '../../controller/controller.dart';
 import '../../routes/app_routes.dart';
@@ -107,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           "Get OTP",
                           Colors.white,
                           () {
-                            PrefData.setIsSignIn(true);
+                            // PrefData.setIsSignIn(true);
                             Constant.sendToNext(context, Routes.verificationRoute);
                           },
                           18.sp,

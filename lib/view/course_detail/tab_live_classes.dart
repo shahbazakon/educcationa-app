@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:education_app/utils/assets_path.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -64,13 +65,22 @@ class _TabLiveClassesState extends State<TabLiveClasses> {
                   trailing: getSvgImage("video-circle.svg", width: 24.h, height: 24.h),
                   title: Row(
                     children: [
-                      getAssetImage(modelLesson.image ?? "", height: 66.h, width: 66.h),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: FadeInImage(
+                            placeholder: AssetImage(AppAssets.logoPNG),
+                            image: NetworkImage('${liveClasses[index]["thumbnail"]}'),
+                            imageErrorBuilder: (ctx, exception, stackTrace) {
+                              return Image.asset(AppAssets.logoPNG, height: 66.h, width: 66.h);
+                            },
+                            height: 66.h,
+                            width: 66.h),
+                      ),
                       getHorSpace(12.h),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          getCustomFont(
-                              liveClasses[index]["classTitle"] ?? "", 14.sp, Colors.black, 1,
+                          getCustomFont(liveClasses[index]["course"] ?? "", 14.sp, Colors.black, 1,
                               fontWeight: FontWeight.w700, txtHeight: 1.5.h),
                           getVerSpace(4.h),
                           Container(

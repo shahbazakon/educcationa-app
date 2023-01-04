@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import '../APIs.dart';
+import '../api.dart';
 import '../api_services.dart';
 
 class CoursesServices {
@@ -12,21 +12,24 @@ class CoursesServices {
   getLiveCourses(context) async {
     final response = await apiService!
         .getData(context: context, url: Apis.getLiveClasses, isAuthenticated: true);
-    log("response data : $response ", name: "getLiveCourses");
+    log("response URL : ${Apis.getLiveClasses}", name: "GET LiveCourses");
+    log("response data : $response ", name: "GET LiveCourses");
     return response;
   }
 
   getAddCourse(context) async {
     final response =
-        await apiService!.getData(context: context, url: Apis.getAddCourse, isAuthenticated: true);
-    log("response data : $response ", name: "getLiveCourses");
+        await apiService!.getData(context: context, url: Apis.getAddCourses, isAuthenticated: true);
+    log("response URL : ${Apis.getAddCourses}", name: "GET addCourses");
+    log("response data : $response ", name: "GET addCourses");
     return response;
   }
 
   getUploadContent(context) async {
-    final response = await apiService!
-        .getData(context: context, url: Apis.getUploadContent, isAuthenticated: true);
-    log("response data : $response ", name: "getLiveCourses");
+    final response =
+        await apiService!.getData(context: context, url: Apis.getContents, isAuthenticated: true);
+    log("response URL : ${Apis.getContents}", name: "GET UploadContent");
+    log("response data : $response ", name: "GET UploadContent");
 
     return response;
   }
