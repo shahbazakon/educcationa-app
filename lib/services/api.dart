@@ -6,4 +6,6 @@ class Apis {
   static const getLiveClasses = "$baseURL/liveclasses";
   static const getAddCourses = "$baseURL/addCourses";
   static const getContents = "$baseURL/contents";
+  static const getBanners = "$baseURL/banners";
+  static const getCategory = "$baseURL/categorys";
 }

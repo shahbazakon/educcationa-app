@@ -33,4 +33,20 @@ class CoursesServices {
 
     return response;
   }
+
+  getCategory(context) async {
+    final response =
+        await apiService!.getData(context: context, url: Apis.getCategory, isAuthenticated: true);
+    log("response URL : ${Apis.getContents}", name: "GET UploadContent");
+    log("response data : $response ", name: "GET UploadContent");
+    return response;
+  }
+
+  getBanners(context) async {
+    final response =
+        await apiService!.getData(context: context, url: Apis.getBanners, isAuthenticated: true);
+    log("response URL : ${Apis.getContents}", name: "GET UploadContent");
+    log("response data : $response ", name: "GET UploadContent");
+    return response;
+  }
 }

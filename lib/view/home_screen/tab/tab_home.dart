@@ -16,7 +16,6 @@ import '../../../model/model_home_slider.dart';
 import '../../../model/model_trending.dart';
 import '../../../routes/app_routes.dart';
 import '../../../services/API Services/cources_services.dart';
-import '../../../utils/assets_path.dart';
 import '../../course_detail/course_detail.dart';
 
 class TabHome extends StatefulWidget {
@@ -31,7 +30,9 @@ class _TabHomeState extends State<TabHome> {
   List<ModelHomeSlider> homeSliderLists = DataFile.homeSliderList;
   List<ModelCategory> categoryLists = DataFile.categoryList;
   List<dynamic> addCourses = [];
-  List<String> bannerListImage = DataFile.bannerImageList;
+  // List<String> bannerListImage = DataFile.bannerImageList;
+  List<dynamic> bannerListImage = [];
+  List<dynamic> categoryList = [];
 
   @override
   Widget build(BuildContext context) {
@@ -181,39 +182,53 @@ class _TabHomeState extends State<TabHome> {
     );
   }
 
-  SizedBox buildCategoryList() {
-    return SizedBox(
-      height: 110.h,
-      child: ListView.builder(
-        primary: false,
-        shrinkWrap: true,
-        scrollDirection: Axis.horizontal,
-        itemCount: categoryLists.length,
-        itemBuilder: (context, index) {
-          ModelCategory modelCategory = categoryLists[index];
-          return GestureDetector(
-            onTap: () {
-              Constant.sendToNext(context, Routes.trendingListRoute);
-            },
-            child: Container(
-              margin: EdgeInsets.only(right: 12.h, left: index == 0 ? 20.h : 0),
-              width: 110.h,
-              decoration: BoxDecoration(
-                  color: modelCategory.color!.toColor(), borderRadius: BorderRadius.circular(22.h)),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(height: 60.h, modelCategory.image ?? ""),
-                  getVerSpace(5.h),
-                  getCustomFont(modelCategory.name ?? "", 14.sp, Colors.black, 1,
-                      fontWeight: FontWeight.w700, txtHeight: 1.5.h)
-                ],
-              ),
+  Widget buildCategoryList() {
+    return FutureBuilder(
+        future: CoursesServices().getCategory(context),
+        builder: (context, snapshot) {
+          log('snapshot response : ${snapshot.data}', name: "${context.widget}");
+          if (snapshot.hasData == false) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          categoryList = snapshot.data as List;
+          return SizedBox(
+            height: 110.h,
+            child: ListView.builder(
+              primary: false,
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              itemCount: categoryList.length,
+              itemBuilder: (context, index) {
+                ModelCategory modelCategory = categoryLists[index];
+                var categoryData = categoryList[index];
+                return GestureDetector(
+                  onTap: () {
+                    Constant.sendToNext(context, Routes.trendingListRoute);
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(right: 12.h, left: index == 0 ? 20.h : 0),
+                    width: 110.h,
+                    decoration: BoxDecoration(
+                        color: modelCategory.color!.toColor(),
+                        borderRadius: BorderRadius.circular(22.h)),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.network(
+                          categoryData["categoryimage"],
+                          height: 60.h,
+                        ),
+                        getVerSpace(5.h),
+                        getCustomFont(categoryData["category"] ?? "", 14.sp, Colors.black, 1,
+                            fontWeight: FontWeight.w700, txtHeight: 1.5.h)
+                      ],
+                    ),
+                  ),
+                );
+              },
             ),
           );
-        },
-      ),
-    );
+        });
   }
 
   GetBuilder<HomeScreenController> buildSliderIndicator() {
@@ -234,73 +249,83 @@ class _TabHomeState extends State<TabHome> {
     );
   }
 
-  CarouselSlider buildSliderList() {
-    return CarouselSlider.builder(
-        itemCount: bannerListImage.length,
-        itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) {
-          ModelHomeSlider modelHome = homeSliderLists[itemIndex];
-          log("modelHome.image.toString(): ${modelHome.image.toString()}");
-          log("AppAssets.image1: ${AppAssets.image1}");
-          return ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: SizedBox(
-              height: 150.h,
-              width: 300.w,
-              child: Image.asset(bannerListImage[itemIndex], fit: BoxFit.cover),
-            ),
-          );
+  Widget buildSliderList() {
+    return FutureBuilder(
+        future: CoursesServices().getBanners(context),
+        builder: (context, snapshot) {
+          log('snapshot response : ${snapshot.data}', name: "${context.widget}");
+          if (snapshot.hasData == false) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          bannerListImage = snapshot.data as List;
+          return CarouselSlider.builder(
+              itemCount: bannerListImage.length,
+              itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) {
+                // ModelHomeSlider modelHome = homeSliderLists[itemIndex];
+                // log("modelHome.image.toString(): ${modelHome.image.toString()}");
+                // log("AppAssets.image1: ${AppAssets.image1}");
+                return ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: SizedBox(
+                    height: 150.h,
+                    width: 300.w,
+                    child:
+                        Image.network(bannerListImage[itemIndex]["bannerImage"], fit: BoxFit.cover),
+                  ),
+                );
 
-          // return Container(
-          //   height: 150.h,
-          //   width: 322.w,
-          //   decoration: BoxDecoration(
-          //       color: modelHome.color!.toColor(), borderRadius: BorderRadius.circular(22.h)),
-          //   padding: EdgeInsets.only(left: 20.h),
-          //   child: Row(
-          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //     children: [
-          //       Expanded(
-          //         child: getPaddingWidget(
-          //           EdgeInsets.symmetric(vertical: 20.h),
-          //           Column(
-          //             crossAxisAlignment: CrossAxisAlignment.start,
-          //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //             children: [
-          //               Expanded(
-          //                 flex: 1,
-          //                 child: getMultilineCustomFont(modelHome.name ?? "", 18.sp, Colors.black,
-          //                     fontWeight: FontWeight.w700, txtHeight: 1.5.h),
-          //               ),
-          //               getCustomFont("Get Start", 18.sp, accentColor, 1,
-          //                   fontWeight: FontWeight.w700, txtHeight: 1.5.h)
-          //             ],
-          //           ),
-          //         ),
-          //       ),
-          //       Container(
-          //         width: 160.h,
-          //         decoration: BoxDecoration(
-          //             image: DecorationImage(
-          //                 image: AssetImage(modelHome.image.toString()), fit: BoxFit.fill)),
-          //       )
-          //     ],
-          //   ),
-          // );
-        },
-        options: CarouselOptions(
-            height: 150,
-            viewportFraction: 0.85,
-            initialPage: 0,
-            enableInfiniteScroll: true,
-            reverse: false,
-            autoPlay: false,
-            autoPlayInterval: const Duration(seconds: 3),
-            autoPlayAnimationDuration: const Duration(milliseconds: 800),
-            autoPlayCurve: Curves.fastOutSlowIn,
-            scrollDirection: Axis.horizontal,
-            onPageChanged: (index, reason) {
-              controller.indexChange(index.obs);
-            }));
+                // return Container(
+                //   height: 150.h,
+                //   width: 322.w,
+                //   decoration: BoxDecoration(
+                //       color: modelHome.color!.toColor(), borderRadius: BorderRadius.circular(22.h)),
+                //   padding: EdgeInsets.only(left: 20.h),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //     children: [
+                //       Expanded(
+                //         child: getPaddingWidget(
+                //           EdgeInsets.symmetric(vertical: 20.h),
+                //           Column(
+                //             crossAxisAlignment: CrossAxisAlignment.start,
+                //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //             children: [
+                //               Expanded(
+                //                 flex: 1,
+                //                 child: getMultilineCustomFont(modelHome.name ?? "", 18.sp, Colors.black,
+                //                     fontWeight: FontWeight.w700, txtHeight: 1.5.h),
+                //               ),
+                //               getCustomFont("Get Start", 18.sp, accentColor, 1,
+                //                   fontWeight: FontWeight.w700, txtHeight: 1.5.h)
+                //             ],
+                //           ),
+                //         ),
+                //       ),
+                //       Container(
+                //         width: 160.h,
+                //         decoration: BoxDecoration(
+                //             image: DecorationImage(
+                //                 image: AssetImage(modelHome.image.toString()), fit: BoxFit.fill)),
+                //       )
+                //     ],
+                //   ),
+                // );
+              },
+              options: CarouselOptions(
+                  height: 150,
+                  viewportFraction: 0.85,
+                  initialPage: 0,
+                  enableInfiniteScroll: true,
+                  reverse: false,
+                  autoPlay: true,
+                  autoPlayInterval: const Duration(seconds: 3),
+                  autoPlayAnimationDuration: const Duration(milliseconds: 800),
+                  autoPlayCurve: Curves.fastOutSlowIn,
+                  scrollDirection: Axis.horizontal,
+                  onPageChanged: (index, reason) {
+                    controller.indexChange(index.obs);
+                  }));
+        });
   }
 
   Widget buildSearchWidget(BuildContext context) {
