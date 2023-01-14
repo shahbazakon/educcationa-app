@@ -40,18 +40,21 @@ class CourseDetail extends StatefulWidget {
 class _CourseDetailState extends State<CourseDetail> with TickerProviderStateMixin {
   void backClick() {
     Constant.backToPrev(context);
+    // Navigator.pop(context);
   }
 
   late TabController _tabController;
   late PageController _pController;
-
   late FlickManager flickManager;
-
-  final YoutubePlayerController videoController = YoutubePlayerController(
+  bool fullScreen = false;
+  Orientation? deviceOrientation;
+  Size? size;
+  YoutubePlayerController videoController = YoutubePlayerController(
     initialVideoId: '-tysrApRtLU',
     flags: const YoutubePlayerFlags(
       autoPlay: false,
       mute: false,
+      enableCaption: true,
       showLiveFullscreenButton: false,
     ),
   );
@@ -60,6 +63,7 @@ class _CourseDetailState extends State<CourseDetail> with TickerProviderStateMix
   void dispose() {
     _tabController.dispose();
     flickManager.dispose();
+    videoController.dispose();
     super.dispose();
   }
 
@@ -77,39 +81,57 @@ class _CourseDetailState extends State<CourseDetail> with TickerProviderStateMix
 
   @override
   Widget build(BuildContext context) {
-    log("heading: ${widget.heading}", name: "${context.widget}");
-    log("description: ${widget.description}", name: "${context.widget}");
-    log("subjectName: ${widget.subjectName}", name: "${context.widget}");
-    log("lessons: ${widget.lessons}", name: "${context.widget}");
-    log("courseDuration: ${widget.courseDuration}", name: "${context.widget}");
+    size = MediaQuery.of(context).size;
+    log("videoController 1: $videoController");
     return WillPopScope(
       onWillPop: () async {
         backClick();
         return false;
       },
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        backgroundColor: Colors.white,
-        body: SafeArea(
-          child: Column(
-            children: [
-              getVerSpace(20.h),
-              getToolBar("Courses", () {
-                backClick();
-              }),
-              getVerSpace(20.h),
-              buildVideoView(),
-              getVerSpace(12.h),
-              buildTabBar(),
-              getVerSpace(12.h),
-              buildPageView(),
-              getVerSpace(30.h),
-              buildEnrollButton(context),
-              getVerSpace(30.h)
-            ],
+      child: OrientationBuilder(builder: (context, orientation) {
+        log("videoController 2: $videoController");
+        deviceOrientation = orientation;
+        bool isPortrait = orientation == Orientation.portrait;
+        return Scaffold(
+          resizeToAvoidBottomInset: false,
+          backgroundColor: Colors.white,
+          body: SafeArea(
+            child: Column(
+              children: [
+                getVerSpace(20.h),
+                Visibility(
+                  visible: isPortrait,
+                  child: Column(
+                    children: [
+                      getToolBar("Courses", () {
+                        backClick();
+                      }),
+                      getVerSpace(20.h),
+                    ],
+                  ),
+                ),
+                buildVideoView(),
+                Visibility(
+                  visible: isPortrait,
+                  child: Expanded(
+                    child: Column(
+                      children: [
+                        getVerSpace(12.h),
+                        buildTabBar(),
+                        getVerSpace(12.h),
+                        buildPageView(),
+                        getVerSpace(30.h),
+                        buildEnrollButton(context),
+                        getVerSpace(30.h)
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
-        ),
-      ),
+        );
+      }),
     );
   }
 
@@ -192,8 +214,9 @@ class _CourseDetailState extends State<CourseDetail> with TickerProviderStateMix
     );
   }
 
-  Container buildVideoView() {
+  Widget buildVideoView() {
     return Container(
+      height: deviceOrientation == Orientation.portrait ? 200.h : size!.height * .95,
       margin: EdgeInsets.symmetric(horizontal: 20.h),
       decoration: BoxDecoration(
           color: Colors.white,
@@ -203,25 +226,39 @@ class _CourseDetailState extends State<CourseDetail> with TickerProviderStateMix
           ]),
       padding: EdgeInsets.all(12.h),
       child: Container(
-        height: 195.h,
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.h)),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(15.h),
-          child: YoutubePlayer(
-            controller: videoController,
-            showVideoProgressIndicator: true,
-            progressIndicatorColor: Colors.blueAccent,
-            progressColors: const ProgressBarColors(
-              playedColor: Colors.amber,
-              handleColor: Colors.amberAccent,
-            ),
-            onReady: () {
-              // _controller.addListener(listener);
+          child: YoutubePlayerBuilder(
+            onEnterFullScreen: () {
+              fullScreen = true;
             },
-            // onReady () {
-            // _controller.addListener(listener);
-            // },
+            onExitFullScreen: () {
+              fullScreen = false;
+            },
+            player: YoutubePlayer(
+              controller: videoController,
+              // aspectRatio: 16 / 10,
+              showVideoProgressIndicator: true,
+              progressIndicatorColor: Colors.blueAccent,
+              progressColors: const ProgressBarColors(
+                playedColor: Colors.amber,
+                handleColor: Colors.amberAccent,
+              ),
+              onReady: () {
+                // _controller.addListener(listener);
+              },
+              // onReady () {
+              // _controller.addListener(listener);
+              // },
+            ),
+            builder: (context, player) {
+              return Column(
+                children: [player],
+              );
+            },
           ),
+
           /*child: FlickVideoPlayer(
             flickManager: flickManager,
             flickVideoWithControls: const FlickVideoWithControls(

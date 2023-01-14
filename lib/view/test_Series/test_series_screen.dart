@@ -5,6 +5,7 @@ import 'package:education_app/Constants/color_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_document_picker/flutter_document_picker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:open_file/open_file.dart';
 
 import '../../Constants/constant.dart';
@@ -18,6 +19,21 @@ class TestSeriesScreen extends StatefulWidget {
 }
 
 class _TestSeriesScreenState extends State<TestSeriesScreen> {
+  List<XFile>? _imageFileList;
+  ImagePicker picker = ImagePicker();
+
+  takePhoto() async {
+    log("take Picture call");
+    XFile? photo = await picker.pickImage(source: ImageSource.camera);
+    log("image : ${photo?.name}");
+    log("path : ${photo?.path}");
+    setState(() {
+      if ("${photo?.path}" != "") {
+        documentListPth.add("${photo?.path}");
+      }
+    });
+  }
+
   void backClick() {
     Constant.backToPrev(context);
   }
@@ -93,7 +109,9 @@ class _TestSeriesScreenState extends State<TestSeriesScreen> {
                 onTap: _pickFileInProgress ? null : _pickDocument,
                 icon: const Icon(Icons.file_upload_outlined),
                 color: Colors.blue.shade100),
-            testUploadButton(size,
+            testUploadButton(size, onTap: () {
+              takePhoto();
+            },
                 title: "Take Photo",
                 icon: const Icon(Icons.camera_alt_outlined),
                 color: Colors.redAccent.shade100),
